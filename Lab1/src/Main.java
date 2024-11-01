@@ -6,7 +6,7 @@ public class Main extends JFrame {
     Color current_color;
 
     public static void main(String[] args) {
-        Main application = new Main("Lab1 Color Converter");
+        Main application = new Main("Color Converter");
         application.setSize(550, 500);
         application.setVisible(true);
         application.setResizable(false);
@@ -28,6 +28,7 @@ public class Main extends JFrame {
         swatchPanel.add(rgbSwatch);
         swatchPanel.add(hslSwatch);
         swatchPanel.add(cmykSwatch);
+
 
         color_panel.registerObserver(rgbSwatch);
         color_panel.registerObserver(cmykSwatch);

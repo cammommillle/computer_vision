@@ -35,7 +35,7 @@ public class RGBSwatch extends JPanel implements Observer {
 
         JButton change_color = new JButton("Change Color");
         change_color.addActionListener(e -> {
-            Color newColor = JColorChooser.showDialog(null, "Select a color", own_color);
+            Color newColor = CustomColorChooser.showDialog(null, "Select a color", own_color);
             if (newColor != null) {
                 own_color = newColor;
                 updateColor();
