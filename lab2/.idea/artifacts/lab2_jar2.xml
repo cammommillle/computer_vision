@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="lab2:jar2">
+    <output-path>$PROJECT_DIR$/out/artifacts/lab2_jar2</output-path>
+    <root id="root">
+      <element id="archive" name="lab2.jar">
+        <element id="module-output" name="lab2" />
+      </element>
+      <element id="library" level="project" name="opencv-4100" />
+    </root>
+  </artifact>
+</component>
