@@ -1,0 +1,4 @@
+Step by Step Line Algorithm Time: 476000 nanoseconds
+DDA Line Algorithm Time: 438000 nanoseconds
+Bresenham Line Algorithm Time: 369600 nanoseconds
+Bresenham Circle Algorithm Time: 642800 nanoseconds

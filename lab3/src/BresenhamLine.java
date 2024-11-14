@@ -1,8 +1,8 @@
 import java.awt.Graphics2D;
 
 public class BresenhamLine {
-    public static void drawLine(Graphics2D g, int x0, int y0, int x1, int y1) {
-
+    public static long drawLine(Graphics2D g, int x0, int y0, int x1, int y1) {
+        long startTime = System.nanoTime();
         // Определяем, является ли линия крутой (steep)
         boolean steep = Math.abs(y1 - y0) > Math.abs(x1 - x0);
 
@@ -53,5 +53,7 @@ public class BresenhamLine {
                 error += dx;
             }
         }
+        long endTime = System.nanoTime();
+        return (endTime - startTime);
     }
 }

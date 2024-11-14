@@ -1,7 +1,8 @@
 import java.awt.Graphics2D;
 
 public class BresenhamCircle {
-    public static void drawCircle(Graphics2D g, int xc, int yc, int r) {
+    public static long drawCircle(Graphics2D g, int xc, int yc, int r) {
+        long startTime = System.nanoTime();
         int x = 0, y = r;
         int d = 3 - 2 * r;
         drawCirclePoints(g, xc, yc, x, y);
@@ -16,6 +17,8 @@ public class BresenhamCircle {
             }
             drawCirclePoints(g, xc, yc, x, y);
         }
+        long endTime = System.nanoTime();
+        return (endTime - startTime);
     }
 
     private static void drawCirclePoints(Graphics2D g, int xc, int yc, int x, int y) {

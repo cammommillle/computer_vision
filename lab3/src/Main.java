@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,7 +10,9 @@ public class Main {
             frame.setResizable(false);
 
             // Создаем контроллер и добавляем в окно
-            CanvasController controller = new CanvasController();
+            CanvasController controller = null;
+            controller = new CanvasController();
+
             frame.add(controller.getPanel());
 
             frame.setVisible(true);

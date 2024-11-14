@@ -1,11 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class CanvasController {
     private CanvasPanel canvas;
     private JPanel panel;
     private JTextField startXField, startYField, endXField, endYField, rField;
     int x0, y0, x1, y1, r;
+    long time;
 
     public CanvasController() {
         canvas = new CanvasPanel();
@@ -21,7 +26,6 @@ public class CanvasController {
         endXField = new JTextField(3);
         endYField = new JTextField(3);
         rField = new JTextField(3);
-       // JButton setXY = new JButton("Set XYR");
 
         // Добавляем поля и кнопку в панель
         controlsPanel.add(new JLabel("Start X:"));
@@ -32,9 +36,8 @@ public class CanvasController {
         controlsPanel.add(endXField);
         controlsPanel.add(new JLabel("End Y:"));
         controlsPanel.add(endYField);
-        controlsPanel.add(new JLabel("End R:"));
+        controlsPanel.add(new JLabel("Radius:"));
         controlsPanel.add(rField);
-        //controlsPanel.add(setXY);
 
         JButton btnStepByStep = new JButton("Step-by-Step Line");
         JButton btnDDA = new JButton("DDA Line");
@@ -70,31 +73,46 @@ public class CanvasController {
         x1 = Integer.parseInt(endXField.getText());
         y1 = Integer.parseInt(endYField.getText());
         r = Integer.parseInt(rField.getText());
+    }
 
+    private void writeToFile(String message) {
+        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("report.txt", true)))) {
+            writer.println(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void drawStepByStepLine() {
         setValues();
         Graphics2D g = canvas.getCanvasGraphics();
-        StepByStepLine.drawLine(g,  x0, y0, x1, y1);
+        time = StepByStepLine.drawLine(g, x0, y0, x1, y1);
+        String message = "Step by Step Line Algorithm Time: " + time + " nanoseconds";
+        writeToFile(message);
     }
 
     private void drawDDALine() {
         setValues();
         Graphics2D g = canvas.getCanvasGraphics();
-        DDALine.drawLine(g,  x0, y0, x1, y1);
+        time = DDALine.drawLine(g, x0, y0, x1, y1);
+        String message = "DDA Line Algorithm Time: " + time + " nanoseconds";
+        writeToFile(message);
     }
 
     private void drawBresenhamLine() {
         setValues();
         Graphics2D g = canvas.getCanvasGraphics();
-        BresenhamLine.drawLine(g,  x0, y0, x1, y1);
+        time = BresenhamLine.drawLine(g, x0, y0, x1, y1);
+        String message = "Bresenham Line Algorithm Time: " + time + " nanoseconds";
+        writeToFile(message);
     }
 
     private void drawBresenhamCircle() {
         setValues();
         Graphics2D g = canvas.getCanvasGraphics();
-        BresenhamCircle.drawCircle(g, x0, y0, r);
+        time = BresenhamCircle.drawCircle(g, x0, y0, r);
+        String message = "Bresenham Circle Algorithm Time: " + time + " nanoseconds";
+        writeToFile(message);
     }
 
     public JPanel getPanel() {

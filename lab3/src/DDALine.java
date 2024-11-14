@@ -1,8 +1,8 @@
 import java.awt.Graphics2D;
 
 public class DDALine {
-    public static void drawLine(Graphics2D g, int x0, int y0, int x1, int y1) {
-
+    public static long drawLine(Graphics2D g, int x0, int y0, int x1, int y1) {
+        long startTime = System.nanoTime();
         // Если x0 > x1, меняем местами координаты x0, x1 и y0, y1
         if (x0 > x1) {
             int temp = x0;
@@ -42,5 +42,7 @@ public class DDALine {
             // Добавляем шаг
             i++;
         }
+        long endTime = System.nanoTime();
+        return (endTime - startTime);
     }
 }
